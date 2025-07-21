@@ -1,13 +1,17 @@
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Register from './components/Register';
+import Login from './components/Login';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello, Welcome to Spacer!
-      </h1>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
