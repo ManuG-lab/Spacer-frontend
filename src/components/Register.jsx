@@ -5,6 +5,7 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('client'); 
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -56,6 +57,17 @@ const Register = () => {
           onChange={e => setPassword(e.target.value)}
           className="w-full border px-4 py-2 rounded"
         />
+         <select
+          name="role"
+          placeholder="Select Role"
+          value={role}
+          onChange={(e) => setRole(e.target.value)}
+          className="w-full border px-4 py-2 rounded"
+        >
+          <option value="client">Client</option>
+          <option value="owner">Owner</option>
+        </select>
+
         <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
           Register
         </button>

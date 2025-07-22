@@ -16,6 +16,7 @@ const Navbar = () => {
       <ul className="hidden md:flex space-x-6">
         <li><Link to="/" className="hover:text-indigo-500">Home</Link></li>
         <li><Link to="/spaces" className="hover:text-indigo-500">Spaces</Link></li>
+        <li><Link to="/about" className="hover:text-indigo-500">About</Link></li>
         {token && <li><Link to="/bookings" className="hover:text-indigo-500">Bookings</Link></li>}
         {token && <li><Link to="/profile" className="hover:text-indigo-500">Profile</Link></li>}
       </ul>
