@@ -5,7 +5,7 @@ const Bookings = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://127.0.0.1:5000/api/bookings/my-bookings", {
+    fetch("http://127.0.0.1:5000/api/bookings", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

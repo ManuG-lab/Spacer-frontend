@@ -6,12 +6,13 @@ const BookingModal = ({ space, onClose }) => {
 
   const handleBooking = async () => {
     const token = localStorage.getItem("token");
+    console.log("Token before booking:", token);
     if (!token) {
       alert("Please log in to book.");
       return;
     }
 
-    const res = await fetch("http://127.0.0.1:5000/api/bookings/bookings", {
+    const res = await fetch("http://127.0.0.1:5000/api/bookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
