@@ -1,13 +1,18 @@
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SpacePage from './pages/SpacePage';
+import BookingPage from './pages/BookingPage';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello, Welcome to Spacer!
-      </h1>
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path="/" element={<div className="p-6 text-xl">Welcome to Spacer</div>} />
+        <Route path="/space/:id" element={<SpacePage />} />
+        <Route path="/book/:id" element={<BookingPage />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
