@@ -9,6 +9,10 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import About from './pages/About'
 import Footer from './components/Footer';
+import MySpaces from './owner/MySpaces';
+import CreateSpace from './owner/CreateSpace';
+import EditSpace from './owner/EditSpace';
+import OwnerBookings from "./owner/OwnerBookings";
 
 
 function App() {
@@ -23,6 +27,11 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
+        <Route path="/owner/spaces" element={<MySpaces />} />
+        <Route path="/owner/add-space" element={<CreateSpace />} />
+        <Route path="/owner/edit-space" element={<EditSpace />} />
+        <Route path="/owner/bookings" element={<OwnerBookings />} />
+        {/* Add more routes as needed */}
       </Routes>
       <Footer />
     </>

@@ -1,15 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
+
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [role, setRole] = useState(null);
   const navigate = useNavigate();
+
   const token = localStorage.getItem("token");
 
+  useEffect(() => {
+    const storedRole = localStorage.getItem("role");
+    setRole(storedRole);
+  }, []);
+
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.clear(); 
     navigate("/login");
+  };
+
+  const renderRoleLinks = () => {
+    if (role === "owner") {
+      return (
+        <>
+          <li><Link to="/owner/spaces" className="hover:text-indigo-600 transition">My Spaces</Link></li>
+          <li><Link to="/owner/add-space" className="hover:text-indigo-600 transition">Add Space</Link></li>
+          <li><Link to="/owner/edit-space" className="hover:text-indigo-600 transition">Edit Space</Link></li>
+          <li><Link to="/owner/bookings" className="hover:text-indigo-600 transition">My Bookings</Link></li>
+        </>
+      );
+    }
+    if (role === "admin") {
+      return (
+        <>
+          <li><Link to="/admin/users" className="hover:text-indigo-600 transition">Manage Users</Link></li>
+          <li><Link to="/admin/spaces" className="hover:text-indigo-600 transition">All Spaces</Link></li>
+        </>
+      );
+    }
+    return null;
   };
 
   return (
@@ -23,6 +53,7 @@ const Navbar = () => {
           <li><Link to="/spaces" className="hover:text-indigo-600 transition">Spaces</Link></li>
           <li><Link to="/about" className="hover:text-indigo-600 transition">About</Link></li>
           {token && <li><Link to="/bookings" className="hover:text-indigo-600 transition">Bookings</Link></li>}
+          {renderRoleLinks()}
           {token && (
             <li className="relative group">
               <button className="hover:text-indigo-600 transition">Profile ▾</button>
@@ -58,6 +89,7 @@ const Navbar = () => {
           <li><Link to="/spaces" className="block hover:text-indigo-600">Spaces</Link></li>
           <li><Link to="/about" className="block hover:text-indigo-600">About</Link></li>
           {token && <li><Link to="/bookings" className="block hover:text-indigo-600">Bookings</Link></li>}
+          {renderRoleLinks()}
           {token && (
             <>
               <li><Link to="/profile" className="block hover:text-indigo-600">My Profile</Link></li>

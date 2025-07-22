@@ -16,6 +16,7 @@ const Login = () => {
     const data = await res.json();
     if (res.ok) {
       localStorage.setItem('token', data.token);
+      localStorage.setItem("role", data.user.role);
       alert('Login successful');
       navigate('/spaces');
     } else {
