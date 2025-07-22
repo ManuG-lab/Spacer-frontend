@@ -1,17 +1,32 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import SpacePage from './pages/SpacePage';
-import BookingPage from './pages/BookingPage';
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Spaces from "./pages/Spaces";
+import Bookings from "./pages/Bookings";
+import Profile from "./pages/Profile";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import About from './pages/About'
+import Footer from './components/Footer';
+
 
 function App() {
   return (
-    <Router>
+    <>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<div className="p-6 text-xl">Welcome to Spacer</div>} />
-        <Route path="/space/:id" element={<SpacePage />} />
-        <Route path="/book/:id" element={<BookingPage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/spaces" element={<Spaces />} />
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/about" element={<About />} />
       </Routes>
-    </Router>
+      <Footer />
+    </>
+
   );
 }
 
