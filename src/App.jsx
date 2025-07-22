@@ -1,12 +1,19 @@
 import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import About from './pages/About'
+import Home from './pages/Home'
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div className="App">
-      <h1 className="text-3xl font-bold underline">
-        Hello, Welcome to Spacer!
-      </h1>
-    </div>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+        <Footer />
+      </div>
   )
 }
 
