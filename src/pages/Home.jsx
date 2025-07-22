@@ -1,25 +1,23 @@
-// src/pages/Home.jsx
-import SpaceCard from '../components/SpaceCard.jsx';
-import { useEffect, useState } from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 
-export default function Home() {
-  const [spaces, setSpaces] = useState([]);
-
-  useEffect(() => {
-    fetch('http://127.0.0.1:5000/api/spaces/spaces')
-      .then(response => response.json())
-      .then(data => setSpaces(data))
-      .catch(error => console.error('Error fetching spaces:', error));
-  }, []);
-
+const Home = () => {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">Available Spaces</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {spaces.map(space => (
-          <SpaceCard key={space.id} space={space} />
-        ))}
-      </div>
+    <div className="bg-gray-50 min-h-screen flex flex-col justify-center items-center text-center px-6">
+      <h1 className="text-4xl md:text-6xl font-bold text-indigo-600 mb-4">
+        Welcome to Spacer
+      </h1>
+      <p className="text-gray-700 text-lg md:text-xl mb-6 max-w-2xl">
+        Discover and book amazing spaces for your events, meetings, and creative sessions.
+      </p>
+      <Link
+        to="/spaces"
+        className="bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition"
+      >
+        Explore Spaces
+      </Link>
     </div>
   );
-}
+};
+
+export default Home;

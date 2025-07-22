@@ -9,7 +9,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://127.0.0.1:5000/api/users/register', {
+    const res = await fetch('http://127.0.0.1:5000/api/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, email, password }),
@@ -31,24 +31,27 @@ const Register = () => {
           type="text"
           placeholder="Name"
           value={name}
-          onChange={e => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           className="w-full border px-4 py-2 rounded"
+          required
         />
         <input
           type="email"
           placeholder="Email"
           value={email}
-          onChange={e => setEmail(e.target.value)}
+          onChange={(e) => setEmail(e.target.value)}
           className="w-full border px-4 py-2 rounded"
+          required
         />
         <input
           type="password"
           placeholder="Password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
           className="w-full border px-4 py-2 rounded"
+          required
         />
-        <button type="submit" className="bg-primary text-white px-4 py-2 rounded hover:bg-blue-700">
+        <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700">
           Register
         </button>
       </form>
