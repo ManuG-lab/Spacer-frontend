@@ -27,6 +27,7 @@ const Navbar = () => {
           <li><Link to="/owner/spaces" className="hover:text-indigo-600 transition">My Spaces</Link></li>
           <li><Link to="/owner/add-space" className="hover:text-indigo-600 transition">Add Space</Link></li>
           <li><Link to="/owner/bookings" className="hover:text-indigo-600 transition">My Bookings</Link></li>
+          <li><Link to="/owner/payments" className="hover:text-indigo-600 transition">Payments</Link></li>
         </>
       );
     }

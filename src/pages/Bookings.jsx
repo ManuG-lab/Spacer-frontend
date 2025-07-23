@@ -13,10 +13,38 @@ const Bookings = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  const handleInvoice = (bookingId) => {
-    // TODO: Link this to your invoice logic or download action
-    alert(`Generating invoice for booking #${bookingId}`);
-  };
+  const handleInvoice = async (bookingId) => {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    alert("Please log in to generate an invoice.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5000/api/invoices", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ booking_id: bookingId }),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 201) {
+      alert(data.message); 
+    } else if (response.status === 409) {
+      alert(data.message);
+    } else {
+      alert(data.message || "Failed to generate invoice.");
+    }
+  } catch (error) {
+    console.error("Invoice generation error:", error);
+    alert("Something went wrong while generating the invoice.");
+  }
+};
 
   const handlePayment = (bookingId) => {
     // TODO: Link this to your payment logic

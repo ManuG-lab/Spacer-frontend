@@ -13,6 +13,7 @@ import MySpaces from './owner/MySpaces';
 import CreateSpace from './owner/CreateSpace';
 import EditSpace from './owner/EditSpace';
 import OwnerBookings from "./owner/OwnerBookings";
+import Payments from './owner/Payments';
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
         <Route path="/owner/add-space" element={<CreateSpace />} />
         <Route path="/owner/spaces/:id/edit" element={<EditSpace />} />
         <Route path="/owner/bookings" element={<OwnerBookings />} />
+        <Route path="/owner/payments" element={<Payments />} />
+
         {/* Add more routes as needed */}
       </Routes>
       <Footer />
