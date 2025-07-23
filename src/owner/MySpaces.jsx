@@ -18,23 +18,23 @@ const MySpaces = () => {
   }, []);
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this space?");
-    if (!confirmDelete) return;
+   const confirmDelete = window.confirm("Are you sure you want to delete this space?");
+  if (!confirmDelete) return;
 
-    const res = await fetch(`http://localhost:5000/api/spaces/${id}`, {
-      method: "DELETE",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  const res = await fetch(`http://localhost:5000/api/spaces/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
 
-    if (res.ok) {
-      setSpaces((prev) => prev.filter((s) => s.id !== id));
-      alert("Space deleted.");
-    } else {
-      alert("Failed to delete.");
-    }
-  };
+  if (res.ok) {
+    setSpaces((prev) => prev.filter((s) => s.id !== id));
+    alert("Space deleted.");
+  } else {
+    alert("Failed to delete.");
+  }
+};
 
   return (
     <div className="p-6">

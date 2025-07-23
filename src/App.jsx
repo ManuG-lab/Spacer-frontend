@@ -29,7 +29,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/owner/spaces" element={<MySpaces />} />
         <Route path="/owner/add-space" element={<CreateSpace />} />
-        <Route path="/owner/edit-space" element={<EditSpace />} />
+        <Route path="/owner/spaces/:id/edit" element={<EditSpace />} />
         <Route path="/owner/bookings" element={<OwnerBookings />} />
         {/* Add more routes as needed */}
       </Routes>
