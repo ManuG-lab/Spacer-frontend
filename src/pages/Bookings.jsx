@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -46,10 +50,11 @@ const Bookings = () => {
   }
 };
 
-  const handlePayment = (bookingId) => {
-    // TODO: Link this to your payment logic
-    alert(`Redirecting to payment for booking #${bookingId}`);
+    const handlePayment = (bookingId) => {
+      navigate(`/pay/${bookingId}`);
   };
+  
+
 
   return (
     <div className="p-6">
