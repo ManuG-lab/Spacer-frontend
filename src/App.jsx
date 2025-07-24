@@ -1,7 +1,9 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ProtectedRoute from "./components/ProtectedRoute";
 
+// Pages
 import Home from "./pages/Home";
 import Spaces from "./pages/Spaces";
 import Bookings from "./pages/Bookings";
@@ -11,87 +13,69 @@ import Register from "./pages/Register";
 import About from "./pages/About";
 import Pay from "./pages/Pay";
 
+// Owner pages
 import MySpaces from "./owner/MySpaces";
 import CreateSpace from "./owner/CreateSpace";
 import EditSpace from "./owner/EditSpace";
 import OwnerBookings from "./owner/OwnerBookings";
 import Payments from "./owner/Payments";
 
-// ✅ Admin pages
+// Admin
+import Overview from "./admin/pages/Overview";
+import ManageUsers from "./admin/pages/ManageUsers";
+import ManageSpaces from "./admin/pages/ManageSpaces";
+import Reports from "./admin/pages/Reports";
 import AdminDashboard from "./admin/AdminDashboard";
-import ManageSpaces from "./admin/ManageSpaces";
-import ManageBookings from "./admin/ManageBookings";
 
 function App() {
-  const token = localStorage.getItem("token");
-  let userRole = null;
-
-  if (token) {
-    try {
-      const payload = JSON.parse(atob(token.split(".")[1])); // Decode JWT
-      userRole = payload.role; // "client" or "owner"
-    } catch (err) {
-      console.error("Invalid token");
-    }
-  }
-
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
-        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/spaces" element={<Spaces />} />
+        <Route path="/bookings" element={<Bookings />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
-
-        {/* Client Routes */}
-        <Route path="/bookings" element={token ? <Bookings /> : <Navigate to="/login" />} />
-        <Route path="/profile" element={token ? <Profile /> : <Navigate to="/login" />} />
-        <Route path="/pay/:bookingId" element={token ? <Pay /> : <Navigate to="/login" />} />
+        <Route path="/pay/:bookingId" element={<Pay />} />
 
         {/* Owner Routes */}
         <Route
           path="/owner/spaces"
-          element={userRole === "owner" ? <MySpaces /> : <Navigate to="/" />}
+          element={<ProtectedRoute element={MySpaces} allowedRoles={["owner"]} />}
         />
         <Route
           path="/owner/add-space"
-          element={userRole === "owner" ? <CreateSpace /> : <Navigate to="/" />}
+          element={<ProtectedRoute element={CreateSpace} allowedRoles={["owner"]} />}
         />
         <Route
           path="/owner/spaces/:id/edit"
-          element={userRole === "owner" ? <EditSpace /> : <Navigate to="/" />}
+          element={<ProtectedRoute element={EditSpace} allowedRoles={["owner"]} />}
         />
         <Route
           path="/owner/bookings"
-          element={userRole === "owner" ? <OwnerBookings /> : <Navigate to="/" />}
+          element={<ProtectedRoute element={OwnerBookings} allowedRoles={["owner"]} />}
         />
         <Route
           path="/owner/payments"
-          element={userRole === "owner" ? <Payments /> : <Navigate to="/" />}
+          element={<ProtectedRoute element={Payments} allowedRoles={["owner"]} />}
         />
 
-        {/* Admin Routes */}
+        {/* Admin Dashboard with nested routes */}
         <Route
-          path="/admin"
-          element={userRole === "owner" ? <AdminDashboard /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/admin/spaces"
-          element={userRole === "owner" ? <ManageSpaces /> : <Navigate to="/" />}
-        />
-        <Route
-          path="/admin/bookings"
-          element={userRole === "owner" ? <ManageBookings /> : <Navigate to="/" />}
-        />
-
-        {/* Catch All - 404 */}
-        <Route path="*" element={<Navigate to="/" />} />
+          path="/admin/*"
+          element={<ProtectedRoute element={AdminDashboard} allowedRoles={["admin"]} />}
+        >
+          <Route index element={<Overview />} />
+          <Route path="users" element={<ManageUsers />} />
+          <Route path="spaces" element={<ManageSpaces />} />
+          <Route path="reports" element={<Reports />} />
+        </Route>
       </Routes>
       <Footer />
-    </Router>
+    </>
   );
 }
 
