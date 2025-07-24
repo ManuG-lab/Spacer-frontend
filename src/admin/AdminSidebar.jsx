@@ -13,7 +13,7 @@ const AdminSidebar = () => {
       </div>
       <nav className="p-4 space-y-3">
         {[
-          { to: "/admin", icon: <FaHome />, label: "Overview" },
+          { to: "/admin/overview", icon: <FaHome />, label: "Overview" },
           { to: "/admin/users", icon: <FaUsers />, label: "Users" },
           { to: "/admin/spaces", icon: <FaBuilding />, label: "Spaces" },
           { to: "/admin/reports", icon: <FaChartLine />, label: "Reports" },

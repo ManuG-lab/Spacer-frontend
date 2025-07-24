@@ -2,65 +2,115 @@ import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 
 const Overview = () => {
-  const [stats, setStats] = useState({ users: 0, spaces: 0, bookings: 0 });
+  const [userCount, setUserCount] = useState(0);
+  const [spaceCount, setSpaceCount] = useState(0);
+  const [bookingCount, setBookingCount] = useState(0);
+  const [paymentCount, setPaymentCount] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchCounts = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/api/admin/stats", {
+        
+        const usersRes = await fetch("http://127.0.0.1:5000/api/users", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const usersData = await usersRes.json();
+        setUserCount(Array.isArray(usersData) ? usersData.length : 0);
+
+        const spacesRes = await fetch("http://127.0.0.1:5000/api/spaces", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
+        const spacesData = await spacesRes.json();
+        setSpaceCount(Array.isArray(spacesData) ? spacesData.length : 0);
 
-        if (!response.ok) {
-          throw new Error(`Error: ${response.status}`);
-        }
+        const bookingsRes = await fetch("http://127.0.0.1:5000/api/admin/bookings", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const bookingsData = await bookingsRes.json();
+        setBookingCount(Array.isArray(bookingsData) ? bookingsData.length : 0);
 
-        const data = await response.json();
-        setStats(data);
+        
+        const paymentsRes = await fetch("http://127.0.0.1:5000/api/payments", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const paymentsData = await paymentsRes.json();
+        setPaymentCount(Array.isArray(paymentsData) ? paymentsData.length : 0);
+
       } catch (error) {
-        console.error("Error fetching stats:", error);
+        console.error("Error fetching counts:", error);
+        setUserCount(0);
+        setSpaceCount(0);
+        setBookingCount(0);
+        setPaymentCount(0);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchStats();
-  }, []);
+    fetchCounts();
+  }, [token]);
 
   const data = [
-    { name: "Users", value: stats.users },
-    { name: "Spaces", value: stats.spaces },
-    { name: "Bookings", value: stats.bookings },
+    { name: "Users", value: userCount },
+    { name: "Spaces", value: spaceCount },
+    { name: "Bookings", value: bookingCount },
+    { name: "Payments", value: paymentCount },
   ];
 
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Overview</h2>
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        <div className="bg-white p-4 rounded shadow text-center">
-          <p className="text-gray-600">Users</p>
-          <p className="text-2xl font-bold">{stats.users}</p>
-        </div>
-        <div className="bg-white p-4 rounded shadow text-center">
-          <p className="text-gray-600">Spaces</p>
-          <p className="text-2xl font-bold">{stats.spaces}</p>
-        </div>
-        <div className="bg-white p-4 rounded shadow text-center">
-          <p className="text-gray-600">Bookings</p>
-          <p className="text-2xl font-bold">{stats.bookings}</p>
-        </div>
-      </div>
+      {loading ? (
+        <p className="text-gray-500">Loading stats...</p>
+      ) : (
+        <>
+          <div className="grid grid-cols-3 gap-4 mb-6">
+            <div className="bg-white p-4 rounded shadow text-center">
+              <p className="text-gray-600">Users</p>
+              <p className="text-2xl font-bold">{userCount}</p>
+            </div>
+            <div className="bg-white p-4 rounded shadow text-center">
+              <p className="text-gray-600">Spaces</p>
+              <p className="text-2xl font-bold">{spaceCount}</p>
+            </div>
+            <div className="bg-white p-4 rounded shadow text-center">
+              <p className="text-gray-600">Bookings</p>
+              <p className="text-2xl font-bold">{bookingCount}</p>
+            </div>
+            <div className="bg-white p-4 rounded shadow text-center">
+              <p className="text-gray-600">Payments</p>
+              <p className="text-2xl font-bold">{paymentCount}</p>
+            </div>
+          </div>
 
-      <div className="bg-white p-4 rounded shadow">
-        <BarChart width={500} height={300} data={data}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="value" fill="#3b82f6" />
-        </BarChart>
-      </div>
+          <div className="bg-white p-4 rounded shadow">
+            <BarChart width={500} height={300} data={data}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis allowDecimals={false} />
+              <Tooltip />
+              <Bar dataKey="value" fill="#3b82f6" />
+            </BarChart>
+          </div>
+        </>
+      )}
     </div>
   );
 };

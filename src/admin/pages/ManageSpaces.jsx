@@ -35,7 +35,9 @@ const ManageSpaces = () => {
           <tr>
             <th className="p-3">ID</th>
             <th className="p-3">Name</th>
-            <th className="p-3">Price</th>
+            <th className="p-3">Price/hr</th>
+            <th className="p-3">Price/day</th>
+            <th className="p-3">Capacity</th>
             <th className="p-3">Location</th>
           </tr>
         </thead>
@@ -44,8 +46,10 @@ const ManageSpaces = () => {
             spaces.map((space) => (
               <tr key={space.id} className="border-b hover:bg-gray-100">
                 <td className="p-3">{space.id}</td>
-                <td className="p-3">{space.name}</td>
-                <td className="p-3">${space.price_per_hour}</td>
+                <td className="p-3">{space.title}</td>
+                <td className="p-3">{space.price_per_hour}/=</td>
+                <td className="p-3">{space.price_per_day}/=</td>
+                <td className="p-3">{space.capacity}</td>
                 <td className="p-3">{space.location}</td>
               </tr>
             ))

@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import ProtectedRoute from "./components/ProtectedRoute";
+
 
 // Pages
 import Home from "./pages/Home";
@@ -44,34 +44,35 @@ function App() {
         {/* Owner Routes */}
         <Route
           path="/owner/spaces"
-          element={<ProtectedRoute element={MySpaces} allowedRoles={["owner"]} />}
+          element={<MySpaces />} 
         />
         <Route
           path="/owner/add-space"
-          element={<ProtectedRoute element={CreateSpace} allowedRoles={["owner"]} />}
+          element={<CreateSpace />} 
         />
         <Route
           path="/owner/spaces/:id/edit"
-          element={<ProtectedRoute element={EditSpace} allowedRoles={["owner"]} />}
+          element={<EditSpace />} 
         />
         <Route
           path="/owner/bookings"
-          element={<ProtectedRoute element={OwnerBookings} allowedRoles={["owner"]} />}
+          element={<OwnerBookings />} 
         />
         <Route
           path="/owner/payments"
-          element={<ProtectedRoute element={Payments} allowedRoles={["owner"]} />}
+          element={<Payments />} 
         />
 
         {/* Admin Dashboard with nested routes */}
         <Route
-          path="/admin/*"
-          element={<ProtectedRoute element={AdminDashboard} allowedRoles={["admin"]} />}
+          path="/admin"
+          element={<AdminDashboard />}
         >
-          <Route index element={<Overview />} />
-          <Route path="users" element={<ManageUsers />} />
+          <Route element={<Overview />} />
+          <Route path="users" element={<ManageUsers  />} />
           <Route path="spaces" element={<ManageSpaces />} />
           <Route path="reports" element={<Reports />} />
+          <Route path="overview" element={<Overview />} />
         </Route>
       </Routes>
       <Footer />
