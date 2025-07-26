@@ -1,19 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
   const [role, setRole] = useState(null);
   const navigate = useNavigate();
-
   const token = localStorage.getItem("token");
+  const profileRef = useRef();
 
   useEffect(() => {
     const storedRole = localStorage.getItem("role");
     setRole(storedRole);
   }, []);
+
+  
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setProfileOpen(false);
+      }
+    }
+    if (profileOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [profileOpen]);
 
   const handleLogout = () => {
     localStorage.clear(); 
@@ -34,8 +50,8 @@ const Navbar = () => {
     if (role === "admin") {
       return (
         <>
-          <li><Link to="/admin/users" className="hover:text-indigo-600 transition">Manage Users</Link></li>
-          <li><Link to="/admin/spaces" className="hover:text-indigo-600 transition">All Spaces</Link></li>
+          <li><Link to="/admin" className="hover:text-indigo-600 transition">Admin Dashboard</Link></li>
+          
         </>
       );
     }
@@ -55,12 +71,19 @@ const Navbar = () => {
           {token && <li><Link to="/bookings" className="hover:text-indigo-600 transition">Bookings</Link></li>}
           {renderRoleLinks()}
           {token && (
-            <li className="relative group">
-              <button className="hover:text-indigo-600 transition">Profile ▾</button>
-              <div className="absolute z-10 hidden group-hover:flex flex-col bg-white shadow-lg rounded-md py-2 mt-1 min-w-[140px] text-sm">
-                <Link to="/profile" className="px-4 py-2 hover:bg-indigo-50">My Profile</Link>
-                <button onClick={handleLogout} className="px-4 py-2 hover:bg-red-50 text-red-600 text-left">Logout</button>
-              </div>
+            <li className="relative" ref={profileRef}>
+              <button
+                className="hover:text-indigo-600 transition"
+                onClick={() => setProfileOpen((open) => !open)}
+              >
+                Profile ▾
+              </button>
+              {profileOpen && (
+                <div className="absolute z-10 flex flex-col bg-white shadow-lg rounded-md py-2 mt-1 min-w-[140px] text-sm">
+                  <Link to="/profile" className="px-4 py-2 hover:bg-indigo-50">My Profile</Link>
+                  <button onClick={handleLogout} className="px-4 py-2 hover:bg-red-50 text-red-600 text-left">Logout</button>
+                </div>
+              )}
             </li>
           )}
         </ul>
@@ -92,11 +115,19 @@ const Navbar = () => {
           {renderRoleLinks()}
           {token && (
             <>
-              <li><Link to="/profile" className="block hover:text-indigo-600">My Profile</Link></li>
               <li>
-                <button onClick={handleLogout} className="text-red-600 hover:text-red-700 w-full text-left">
-                  Logout
+                <button
+                  className="block hover:text-indigo-600 w-full text-left"
+                  onClick={() => setProfileOpen((open) => !open)}
+                >
+                  My Profile ▾
                 </button>
+                {profileOpen && (
+                  <div className="bg-white shadow-lg rounded-md py-2 mt-1 min-w-[140px] text-sm">
+                    <Link to="/profile" className="block px-4 py-2 hover:bg-indigo-50">My Profile</Link>
+                    <button onClick={handleLogout} className="block px-4 py-2 hover:bg-red-50 text-red-600 text-left w-full">Logout</button>
+                  </div>
+                )}
               </li>
             </>
           )}
