@@ -16,7 +16,7 @@ const Payments = () => {
       return;
     }
     try {
-      const response = await fetch("http://localhost:5000/api/payments", {
+      const response = await fetch("https://spacer-backend.onrender.com/api/payments", {
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!response.ok) {
@@ -36,7 +36,7 @@ const Payments = () => {
 
   const handleConfirm = async (paymentId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/payments/${paymentId}/confirm`, {
+      const response = await fetch(`https://spacer-backend.onrender.com/api/payments/${paymentId}/confirm`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

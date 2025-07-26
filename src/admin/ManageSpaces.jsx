@@ -8,7 +8,7 @@ const ManageSpaces = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/spaces", {
+    fetch("https://spacer-backend.onrender.com/api/spaces", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -17,7 +17,7 @@ const ManageSpaces = () => {
   }, []);
 
   const handleAddSpace = () => {
-    fetch("http://127.0.0.1:5000/api/spaces", {
+    fetch("https://spacer-backend.onrender.com/api/spaces", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,7 +35,7 @@ const ManageSpaces = () => {
   };
 
   const handleDeleteSpace = (id) => {
-    fetch(`http://127.0.0.1:5000/api/spaces/${id}`, {
+    fetch(`https://spacer-backend.onrender.com/api/spaces/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     })

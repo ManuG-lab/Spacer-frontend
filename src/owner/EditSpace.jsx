@@ -9,7 +9,7 @@ const EditSpace = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/spaces/${id}`, {
+    fetch(`https://spacer-backend.onrender.com/api/spaces/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -38,7 +38,7 @@ const EditSpace = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`http://localhost:5000/api/spaces/${id}`, {
+    const res = await fetch(`https://spacer-backend.onrender.com/api/spaces/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

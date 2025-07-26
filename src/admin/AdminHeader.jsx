@@ -1,10 +1,13 @@
+import { useNavigate } from "react-router-dom";
+
 const AdminHeader = () => {
     const username = localStorage.getItem("username") || "Admin";
+      const navigate = useNavigate();
   
     const handleLogout = () => {
-      localStorage.removeItem("token");
-      window.location.href = "/login";
-    };
+    localStorage.clear(); 
+    navigate("/login");
+  };
   
     return (
       <header className="bg-white shadow p-4 flex justify-between items-center">

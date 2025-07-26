@@ -13,7 +13,7 @@ const Profile = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    fetch("http://127.0.0.1:5000/api/profile", {
+    fetch("https://spacer-backend.onrender.com/api/profile", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

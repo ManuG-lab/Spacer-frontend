@@ -12,7 +12,7 @@ const Pay = () => {
     const token = localStorage.getItem("token");
 
     try {
-      const res = await fetch("http://localhost:5000/api/payments", {
+      const res = await fetch("https://spacer-backend.onrender.com/api/payments", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

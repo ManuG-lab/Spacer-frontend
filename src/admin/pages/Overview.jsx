@@ -13,7 +13,7 @@ const Overview = () => {
     const fetchCounts = async () => {
       try {
         
-        const usersRes = await fetch("http://127.0.0.1:5000/api/users", {
+        const usersRes = await fetch("https://spacer-backend.onrender.com/api/users", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -23,7 +23,7 @@ const Overview = () => {
         const usersData = await usersRes.json();
         setUserCount(Array.isArray(usersData) ? usersData.length : 0);
 
-        const spacesRes = await fetch("http://127.0.0.1:5000/api/spaces", {
+        const spacesRes = await fetch("https://spacer-backend.onrender.com/api/spaces", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const Overview = () => {
         const spacesData = await spacesRes.json();
         setSpaceCount(Array.isArray(spacesData) ? spacesData.length : 0);
 
-        const bookingsRes = await fetch("http://127.0.0.1:5000/api/admin/bookings", {
+        const bookingsRes = await fetch("https://spacer-backend.onrender.com/api/admin/bookings", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -43,7 +43,7 @@ const Overview = () => {
         setBookingCount(Array.isArray(bookingsData) ? bookingsData.length : 0);
 
         
-        const paymentsRes = await fetch("http://127.0.0.1:5000/api/payments", {
+        const paymentsRes = await fetch("https://spacer-backend.onrender.com/api/payments", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

@@ -7,7 +7,7 @@ const MySpaces = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/spaces/my", {
+    fetch("https://spacer-backend.onrender.com/api/spaces/my", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -21,7 +21,7 @@ const MySpaces = () => {
    const confirmDelete = window.confirm("Are you sure you want to delete this space?");
   if (!confirmDelete) return;
 
-  const res = await fetch(`http://localhost:5000/api/spaces/${id}`, {
+  const res = await fetch(`https://spacer-backend.onrender.com/api/spaces/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

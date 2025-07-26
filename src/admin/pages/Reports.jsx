@@ -10,7 +10,7 @@ const Reports = () => {
     const fetchData = async () => {
       try {
         
-        const paymentsRes = await fetch("http://127.0.0.1:5000/api/payments", {
+        const paymentsRes = await fetch("https://spacer-backend.onrender.com/api/payments", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -20,7 +20,7 @@ const Reports = () => {
         const paymentsData = paymentsRes.ok ? await paymentsRes.json() : [];
         setPayments(Array.isArray(paymentsData) ? paymentsData : []);
 
-        const bookingsRes = await fetch("http://127.0.0.1:5000/api/admin/bookings", {
+        const bookingsRes = await fetch("https://spacer-backend.onrender.com/api/admin/bookings", {
           method: "GET",
           headers: {
             "Content-Type": "application/json",

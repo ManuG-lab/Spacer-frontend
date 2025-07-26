@@ -59,12 +59,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-md px-6 py-4">
+    <nav className="bg-gray-900 text-white shadow-md px-6 py-4">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <h1 className="text-2xl font-extrabold text-indigo-600 tracking-wide">Spacer</h1>
 
         {/* Desktop Nav */}
-        <ul className="hidden md:flex space-x-8 items-center text-gray-700 font-medium">
+        <ul className="hidden md:flex space-x-8 items-center text-gray-200 font-medium">
           <li><Link to="/" className="hover:text-indigo-600 transition">Home</Link></li>
           <li><Link to="/spaces" className="hover:text-indigo-600 transition">Spaces</Link></li>
           <li><Link to="/about" className="hover:text-indigo-600 transition">About</Link></li>

@@ -12,7 +12,7 @@ const BookingModal = ({ space, onClose }) => {
       return;
     }
 
-    const res = await fetch("http://127.0.0.1:5000/api/bookings", {
+    const res = await fetch("https://spacer-backend.onrender.com/api/bookings", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

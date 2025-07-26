@@ -15,7 +15,7 @@ const Bookings = () => {
       return;
     }
 
-    fetch("http://127.0.0.1:5000/api/bookings", {
+    fetch("https://spacer-backend.onrender.com/api/bookings", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => {
@@ -83,7 +83,7 @@ const Bookings = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-3xl font-bold mb-6">My Bookings</h2>
+      <h2 className="text-3xl font-bold mb-6 text-center">My Bookings</h2>
 
       {bookings.length === 0 ? (
         <p className="text-gray-600">You have no bookings yet.</p>

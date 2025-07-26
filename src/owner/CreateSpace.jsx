@@ -35,7 +35,7 @@ const CreateSpace = () => {
       price_per_day: parseFloat(formData.price_per_day),
     };
 
-    const res = await fetch("http://localhost:5000/api/spaces", {
+    const res = await fetch("https://spacer-backend.onrender.com/api/spaces", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

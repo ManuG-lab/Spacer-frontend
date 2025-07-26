@@ -5,7 +5,7 @@ const ManageBookings = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/api/owner/bookings", {
+    fetch("https://spacer-backend.onrender.com/api/owner/bookings", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
@@ -14,7 +14,7 @@ const ManageBookings = () => {
   }, []);
 
   const updateStatus = (id, action) => {
-    fetch(`http://127.0.0.1:5000/api/owner/bookings/${id}/${action}`, {
+    fetch(`https://spacer-backend.onrender.com/api/owner/bookings/${id}/${action}`, {
       method: "PATCH",
       headers: { Authorization: `Bearer ${token}` },
     })

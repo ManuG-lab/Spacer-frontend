@@ -5,7 +5,7 @@ const OwnerBookings = () => {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/owner/bookings", {
+    fetch("https://spacer-backend.onrender.com/api/owner/bookings", {
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -25,8 +25,8 @@ const OwnerBookings = () => {
   const handleAction = async (bookingId, action) => {
     const endpoint =
       action === "confirm"
-        ? `http://localhost:5000/api/owner/bookings/${bookingId}/approve`
-        : `http://localhost:5000/api/owner/bookings/${bookingId}/decline`;
+        ? `https://spacer-backend.onrender.com/api/owner/bookings/${bookingId}/approve`
+        : `https://spacer-backend.onrender.com/api/owner/bookings/${bookingId}/decline`;
 
     try {
       const res = await fetch(endpoint, {

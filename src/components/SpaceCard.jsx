@@ -7,7 +7,7 @@ const SpaceCard = ({ space, onBook }) => {
 
   return (
     <div
-      className={`bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer ${
+      className={`bg-gray-200  rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition cursor-pointer ${
         expanded ? "max-h-full" : "max-h-[24rem]"
       }`}
       onClick={toggleExpand}
