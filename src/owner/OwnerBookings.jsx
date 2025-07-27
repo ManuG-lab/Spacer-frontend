@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const OwnerBookings = () => {
   const [bookings, setBookings] = useState([]);
@@ -45,12 +46,12 @@ const OwnerBookings = () => {
               : b
           )
         );
-        alert(`Booking ${action}ed.`);
+        toast.success(`Booking ${action}ed.`);
       } else {
-        alert(`Failed to ${action} booking.`);
+        toast.error(`Failed to ${action} booking.`);
       }
     } catch (err) {
-      alert("Network error.");
+      toast.error("Network error.");
       console.error(err);
     }
   };

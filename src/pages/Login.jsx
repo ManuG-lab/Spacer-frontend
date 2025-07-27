@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,10 +17,10 @@ const Login = () => {
     if (res.ok) {
       localStorage.setItem('token', data.token);
       localStorage.setItem("role", data.user.role);
-      alert('Login successful');
+      toast.success('Login successful');
       navigate('/spaces');
     } else {
-      alert(data.error || 'Login failed');
+      toast.error(data.error || 'Login failed');
     }
   };
 

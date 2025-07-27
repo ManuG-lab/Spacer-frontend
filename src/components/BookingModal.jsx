@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from 'react-toastify';
 
 const BookingModal = ({ space, onClose }) => {
   const [start, setStart] = useState("");
@@ -8,7 +9,7 @@ const BookingModal = ({ space, onClose }) => {
     const token = localStorage.getItem("token");
     console.log("Token before booking:", token);
     if (!token) {
-      alert("Please log in to book.");
+      toast.error("Please log in to book.");
       return;
     }
 
@@ -27,10 +28,10 @@ const BookingModal = ({ space, onClose }) => {
 
     const data = await res.json();
     if (res.ok) {
-      alert("Booking successful!");
+      toast.success("Booking successful!");
       onClose();
     } else {
-      alert(data.error || "Booking failed");
+      toast.error(data.error || "Booking failed");
     }
   };
 

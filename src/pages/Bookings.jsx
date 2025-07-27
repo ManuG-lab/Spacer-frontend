@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from 'react-toastify';
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ const Bookings = () => {
   const handleInvoice = async (bookingId) => {
     const token = localStorage.getItem("token");
     if (!token) {
-      alert("Please log in to generate an invoice.");
+      toast.error("Please log in to generate an invoice.");
       return;
     }
 
@@ -62,15 +62,15 @@ const Bookings = () => {
       const data = await response.json();
 
       if (response.status === 201) {
-        alert(data.message);
+        toast.success(data.message);
       } else if (response.status === 409) {
-        alert(data.message);
+        toast.warning(data.message);
       } else {
-        alert(data.message || "Failed to generate invoice.");
+        toast.error(data.message || "Failed to generate invoice.");
       }
     } catch (error) {
       console.error("Invoice generation error:", error);
-      alert("Something went wrong while generating the invoice.");
+      toast.error("Something went wrong while generating the invoice.");
     }
   };
 

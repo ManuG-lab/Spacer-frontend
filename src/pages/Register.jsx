@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from 'react-toastify';
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -21,13 +21,13 @@ const Register = () => {
       const data = await res.json();
 
       if (res.ok) {
-        alert('Registration successful!');
+        toast.success('Registration successful!');
         navigate('/login');
       } else {
-        alert(data.error || 'Registration failed.');
+        toast.error(data.error || 'Registration failed.');
       }
     } catch (error) {
-      alert('Server error during registration.');
+      toast.error('Server error during registration.');
       console.error(error);
     }
   };

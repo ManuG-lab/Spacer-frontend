@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateSpace = () => {
   const [formData, setFormData] = useState({
@@ -45,11 +46,11 @@ const CreateSpace = () => {
     });
 
     if (res.ok) {
-      alert("Space created successfully.");
+      toast.success("Space created successfully.");
       navigate("/owner/spaces");
     } else {
       const err = await res.json();
-      alert(err.message || "Failed to create space.");
+      toast.error(err.message || "Failed to create space.");
     }
   };
 

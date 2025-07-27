@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const MySpaces = () => {
   const [spaces, setSpaces] = useState([]);
@@ -30,9 +31,9 @@ const MySpaces = () => {
 
   if (res.ok) {
     setSpaces((prev) => prev.filter((s) => s.id !== id));
-    alert("Space deleted.");
+    toast.success("Space deleted.");
   } else {
-    alert("Failed to delete.");
+    toast.error("Failed to delete.");
   }
 };
 

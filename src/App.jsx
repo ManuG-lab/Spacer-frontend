@@ -4,6 +4,9 @@ import Footer from "./components/Footer";
 import 'swiper/css';
 import 'swiper/css/navigation';
 
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 // Pages
 import Home from "./pages/Home";
 import Spaces from "./pages/Spaces";
@@ -32,6 +35,7 @@ function App() {
   return (
     <>
       <Navbar />
+      <ToastContainer position="top-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/spaces" element={<Spaces />} />
@@ -43,34 +47,16 @@ function App() {
         <Route path="/pay/:bookingId" element={<Pay />} />
 
         {/* Owner Routes */}
-        <Route
-          path="/owner/spaces"
-          element={<MySpaces />} 
-        />
-        <Route
-          path="/owner/add-space"
-          element={<CreateSpace />} 
-        />
-        <Route
-          path="/owner/spaces/:id/edit"
-          element={<EditSpace />} 
-        />
-        <Route
-          path="/owner/bookings"
-          element={<OwnerBookings />} 
-        />
-        <Route
-          path="/owner/payments"
-          element={<Payments />} 
-        />
+        <Route path="/owner/spaces" element={<MySpaces />} />
+        <Route path="/owner/add-space" element={<CreateSpace />} />
+        <Route path="/owner/spaces/:id/edit" element={<EditSpace />} />
+        <Route path="/owner/bookings" element={<OwnerBookings />} />
+        <Route path="/owner/payments" element={<Payments />} />
 
         {/* Admin Dashboard with nested routes */}
-        <Route
-          path="/admin"
-          element={<AdminDashboard />}
-        >
+        <Route path="/admin" element={<AdminDashboard />}>
           <Route element={<Overview />} />
-          <Route path="users" element={<ManageUsers  />} />
+          <Route path="users" element={<ManageUsers />} />
           <Route path="spaces" element={<ManageSpaces />} />
           <Route path="reports" element={<Reports />} />
           <Route path="overview" element={<Overview />} />

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 const Payments = () => {
   const [payments, setPayments] = useState([]);
@@ -11,7 +12,7 @@ const Payments = () => {
 
   const fetchPayments = async () => {
     if (!token) {
-      alert("No token found!");
+      toast.error("No token found!");
       setLoading(false);
       return;
     }
@@ -21,14 +22,14 @@ const Payments = () => {
       });
       if (!response.ok) {
         const errorText = await response.text();
-        alert(`Error ${response.status}: ${errorText}`);
+        toast.error(`Error ${response.status}: ${errorText}`);
         setLoading(false);
         return;
       }
       const data = await response.json();
       setPayments(data);
     } catch (err) {
-      alert("Error fetching payments.");
+      toast.error("Error fetching payments.");
     } finally {
       setLoading(false);
     }
@@ -45,7 +46,7 @@ const Payments = () => {
       });
       const data = await response.json();
       if (!response.ok) {
-        alert(data.error || data.message || "Error confirming payment");
+        toast.error(data.error || data.message || "Error confirming payment");
         return;
       }
       
@@ -54,9 +55,9 @@ const Payments = () => {
           p.id === paymentId ? { ...p, payment_status: "completed" } : p
         )
       );
-      alert("Payment confirmed!");
+      toast.success("Payment confirmed!");
     } catch (error) {
-      alert("Network error confirming payment.");
+      toast.error("Network error confirming payment.");
     }
   };
 

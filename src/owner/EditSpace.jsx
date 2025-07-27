@@ -1,6 +1,7 @@
 // components/EditSpace.jsx
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const EditSpace = () => {
   const { id } = useParams();
@@ -22,7 +23,7 @@ const EditSpace = () => {
       .catch(console.error)
       .catch((err) => {
   console.error(err);
-  alert("Failed to fetch space. You may not have permission.");
+  toast.error("Failed to fetch space. You may not have permission.");
   navigate("/owner/spaces");
 });
       
@@ -48,7 +49,7 @@ const EditSpace = () => {
     });
 
     if (res.ok) {
-      alert("Space updated successfully!");
+      toast.success("Space updated successfully!");
       navigate("/owner/spaces");
     } else {
       alert("Update failed");
