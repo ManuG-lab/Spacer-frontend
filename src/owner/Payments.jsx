@@ -37,19 +37,22 @@ const Payments = () => {
 
   const handleConfirm = async (paymentId) => {
     try {
-      const response = await fetch(`https://spacer-backend.onrender.com/api/payments/${paymentId}/confirm`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://spacer-backend.onrender.com/api/payments/${paymentId}/confirm`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       if (!response.ok) {
         toast.error(data.error || data.message || "Error confirming payment");
         return;
       }
-      
+
       setPayments((prev) =>
         prev.map((p) =>
           p.id === paymentId ? { ...p, payment_status: "completed" } : p
@@ -61,51 +64,58 @@ const Payments = () => {
     }
   };
 
-  if (loading) return <p className="text-center text-gray-600">Loading payments...</p>;
+  if (loading)
+    return (
+      <p className="text-center text-[#4B5563] py-10">Loading payments...</p>
+    );
 
   return payments.length === 0 ? (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Payments</h2>
-      <p className="text-gray-600">No payments found.</p>
+    <div className="p-6 bg-[#F9FAFB] min-h-screen">
+      <h2 className="text-2xl font-bold text-[#1E3A8A] mb-4">Payments</h2>
+      <p className="text-[#6B7280]">No payments found.</p>
     </div>
   ) : (
-    <div className="p-4">
-      <h2 className="text-xl font-semibold mb-4">Payments</h2>
-      <table className="min-w-full bg-white border border-gray-300 rounded">
-        <thead>
-          <tr className="bg-gray-100 text-left">
-            <th className="px-4 py-2">Booking ID</th>
-            <th className="px-4 py-2">Client ID</th>
-            <th className="px-4 py-2">Amount</th>
-            <th className="px-4 py-2">Payment Method</th>
-            <th className="px-4 py-2">Payment Date</th>
-            <th className="px-4 py-2">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {payments.map((p, index) => (
-            <tr key={index} className="border-t">
-              <td className="px-4 py-2">{p.booking_id}</td>
-              <td className="px-4 py-2">{p.client_id}</td>
-              <td className="px-4 py-2">{p.amount || "-"}</td>
-              <td className="px-4 py-2">{p.payment_method || "-"}</td>
-              <td className="px-4 py-2">{p.payment_date || "-"}</td>
-              <td className="px-4 py-2">
-                {p.payment_status === "completed" ? (
-                  <span className="text-green-600 font-semibold">Completed</span>
-                ) : (
-                  <button
-                    onClick={() => handleConfirm(p.id)}
-                    className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600"
-                  >
-                    Confirm
-                  </button>
-                )}
-              </td>
+    <div className="p-6 bg-[#F9FAFB] min-h-screen">
+      <h2 className="text-2xl font-bold text-[#1E3A8A] mb-6">Payments</h2>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white rounded-xl shadow border border-gray-200">
+          <thead>
+            <tr className="bg-gray-100 text-[#374151]">
+              <th className="px-4 py-3 text-sm font-medium">Booking ID</th>
+              <th className="px-4 py-3 text-sm font-medium">Client ID</th>
+              <th className="px-4 py-3 text-sm font-medium">Amount</th>
+              <th className="px-4 py-3 text-sm font-medium">Payment Method</th>
+              <th className="px-4 py-3 text-sm font-medium">Payment Date</th>
+              <th className="px-4 py-3 text-sm font-medium">Status</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="text-sm text-[#4B5563]">
+            {payments.map((p, index) => (
+              <tr key={index} className="border-t border-gray-200">
+                <td className="px-4 py-3">{p.booking_id}</td>
+                <td className="px-4 py-3">{p.client_id}</td>
+                <td className="px-4 py-3">{p.amount || "-"}</td>
+                <td className="px-4 py-3">{p.payment_method || "-"}</td>
+                <td className="px-4 py-3">{p.payment_date || "-"}</td>
+                <td className="px-4 py-3">
+                  {p.payment_status === "completed" ? (
+                    <span className="text-[#10B981] font-semibold">
+                      Completed
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => handleConfirm(p.id)}
+                      className="bg-[#1E3A8A] text-white px-3 py-1 rounded-lg hover:bg-[#1A307A] transition"
+                    >
+                      Confirm
+                    </button>
+                  )}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

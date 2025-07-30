@@ -44,27 +44,27 @@ const ManageSpaces = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Manage Spaces</h2>
+    <div className="p-6 bg-slate-50 min-h-screen">
+      <h2 className="text-2xl font-bold text-slate-800 mb-4">Manage Spaces</h2>
 
-      <div className="mb-6">
+      <div className="mb-6 flex flex-wrap gap-2">
         <input
           type="text"
           placeholder="Space Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          className="border p-2 mr-2"
+          className="border border-slate-300 p-2 rounded bg-white text-slate-700"
         />
         <input
           type="number"
           placeholder="Price per Hour"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
-          className="border p-2 mr-2"
+          className="border border-slate-300 p-2 rounded bg-white text-slate-700"
         />
         <button
           onClick={handleAddSpace}
-          className="bg-blue-600 text-white px-4 py-2 rounded"
+          className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded"
         >
           Add Space
         </button>
@@ -72,12 +72,12 @@ const ManageSpaces = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {spaces.map((space) => (
-          <div key={space.id} className="p-4 bg-white shadow rounded">
-            <h3 className="font-bold">{space.title}</h3>
-            <p>KES {space.price_per_hour}/hr</p>
+          <div key={space.id} className="p-4 bg-white shadow-md rounded">
+            <h3 className="font-bold text-slate-800">{space.title}</h3>
+            <p className="text-slate-600">KES {space.price_per_hour}/hr</p>
             <button
               onClick={() => handleDeleteSpace(space.id)}
-              className="bg-red-600 text-white px-3 py-1 mt-2 rounded"
+              className="bg-rose-600 hover:bg-rose-700 text-white px-3 py-1 mt-2 rounded"
             >
               Delete
             </button>

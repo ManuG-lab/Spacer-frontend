@@ -29,30 +29,29 @@ const ManageBookings = () => {
   };
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Manage Bookings</h2>
+    <div className="p-6 bg-[#F5F7FA] min-h-screen text-[#212121]">
+      <h2 className="text-2xl font-bold mb-4 text-[#0D47A1]">Manage Bookings</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {bookings.map((b) => (
-          <div key={b.id} className="p-4 bg-white shadow rounded">
-            <h3 className="font-bold">{b.space.title}</h3>
-            <p>Status: {b.status}</p>
-            <p>
-              {new Date(b.start_datetime).toLocaleString()} -{" "}
-              {new Date(b.end_datetime).toLocaleString()}
+          <div key={b.id} className="p-4 bg-white border border-gray-200 rounded-lg shadow">
+            <h3 className="font-semibold text-[#1565C0]">{b.space.title}</h3>
+            <p className="text-sm mb-1">Status: <span className="font-medium">{b.status}</span></p>
+            <p className="text-sm text-gray-700">
+              {new Date(b.start_datetime).toLocaleString()} – {new Date(b.end_datetime).toLocaleString()}
             </p>
 
             {b.status === "pending" && (
-              <div className="mt-2 flex gap-2">
+              <div className="mt-3 flex gap-2">
                 <button
                   onClick={() => updateStatus(b.id, "approve")}
-                  className="bg-green-600 text-white px-3 py-1 rounded"
+                  className="bg-[#0D47A1] hover:bg-[#1565C0] text-white px-3 py-1 rounded"
                 >
                   Approve
                 </button>
                 <button
                   onClick={() => updateStatus(b.id, "decline")}
-                  className="bg-red-600 text-white px-3 py-1 rounded"
+                  className="bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded"
                 >
                   Decline
                 </button>

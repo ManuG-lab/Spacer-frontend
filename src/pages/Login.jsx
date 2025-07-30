@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,7 +17,7 @@ const Login = () => {
     const data = await res.json();
     if (res.ok) {
       localStorage.setItem('token', data.token);
-      localStorage.setItem("role", data.user.role);
+      localStorage.setItem('role', data.user.role);
       toast.success('Login successful');
       navigate('/spaces');
     } else {
@@ -25,12 +26,16 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-md">
-        <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">Login to Your Account</h2>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 px-4">
+      <div className="bg-gray-200 p-8 rounded-2xl shadow-xl w-full max-w-md">
+        <h2 className="text-3xl font-bold text-center text-indigo-600 mb-6">
+          Login to Your Account
+        </h2>
         <form onSubmit={handleLogin} className="space-y-5">
           <div>
-            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-700">Email</label>
+            <label htmlFor="email" className="block mb-1 text-sm font-medium text-gray-800">
+              Email
+            </label>
             <input
               id="email"
               type="email"
@@ -42,7 +47,9 @@ const Login = () => {
             />
           </div>
           <div>
-            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-700">Password</label>
+            <label htmlFor="password" className="block mb-1 text-sm font-medium text-gray-800">
+              Password
+            </label>
             <input
               id="password"
               type="password"
@@ -55,13 +62,16 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg hover:bg-indigo-700 transition duration-200"
+            className="w-full bg-blue-500 text-white font-semibold py-2 rounded-lg hover:bg-blue-600 transition duration-200"
           >
             Login
           </button>
         </form>
-        <p className="mt-6 text-center text-sm text-gray-500">
-          Don't have an account? <a href="/register" className="text-indigo-600 hover:underline">Register here</a>
+        <p className="mt-6 text-center text-sm text-gray-600">
+          Don&apos;t have an account?{' '}
+          <a href="/register" className="text-indigo-600 hover:underline">
+            Register here
+          </a>
         </p>
       </div>
     </div>

@@ -57,25 +57,25 @@ const OwnerBookings = () => {
   };
 
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6">My Space Bookings</h1>
+    <div className="p-6 bg-[#F9FAFB] min-h-screen">
+      <h1 className="text-3xl font-bold text-[#1E3A8A] mb-6">My Space Bookings</h1>
 
       {bookings.length === 0 ? (
-        <p className="text-gray-600">No bookings yet.</p>
+        <p className="text-[#4B5563]">No bookings yet.</p>
       ) : (
         <div className="grid grid-cols-1 gap-6">
           {bookings.map((booking) => (
             <div
               key={booking.id}
-              className="border rounded-2xl shadow p-4 bg-white"
+              className="bg-white rounded-2xl shadow-md p-5 border border-gray-100"
             >
-              <h2 className="text-xl font-semibold mb-1">
+              <h2 className="text-xl font-semibold text-[#1E3A8A] mb-1">
                 {booking.space?.title || "Unnamed Space"}
               </h2>
-              <p className="text-sm text-gray-600 mb-2">
+              <p className="text-sm text-[#6B7280] mb-2">
                 Booked by: {booking.client_id || "Unknown"}
               </p>
-              <p className="text-sm mb-1">
+              <p className="text-sm font-medium mb-3">
                 Status:{" "}
                 {booking.status === "confirmed"
                   ? "✅ Confirmed"
@@ -83,17 +83,17 @@ const OwnerBookings = () => {
                   ? "❌ Declined"
                   : "⏳ Pending"}
               </p>
-              <div className="mt-3 flex gap-2">
+              <div className="flex gap-3">
                 <button
                   onClick={() => handleAction(booking.id, "confirm")}
-                  className="bg-green-600 text-white px-3 py-1 rounded-lg hover:bg-green-700"
+                  className="bg-[#10B981] text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-[#059669] transition"
                   disabled={booking.status === "confirmed"}
                 >
                   Confirm
                 </button>
                 <button
                   onClick={() => handleAction(booking.id, "decline")}
-                  className="bg-red-600 text-white px-3 py-1 rounded-lg hover:bg-red-700"
+                  className="bg-[#EF4444] text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-[#DC2626] transition"
                   disabled={booking.status === "declined"}
                 >
                   Decline

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-
 const Profile = () => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
@@ -24,9 +23,8 @@ const Profile = () => {
   if (!user) return <div className="text-center mt-10 text-gray-500">Loading...</div>;
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-purple-100 via-white to-blue-100">
-      <div className="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8 text-center">
-
+    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-indigo-100 via-white to-pink-100">
+      <div className="w-full max-w-md bg-white shadow-xl rounded-2xl p-8 text-center">
         <h2 className="text-2xl font-bold text-gray-800 mb-1">{user.name}</h2>
         <p className="text-sm text-gray-500 mb-6">{user.role.toUpperCase()}</p>
 
@@ -41,7 +39,7 @@ const Profile = () => {
             <span className="font-semibold">Verified:</span>{" "}
             <span
               className={`inline-block px-2 py-1 rounded-full text-white text-xs ${
-                user.is_verified ? "bg-green-500" : "bg-red-400"
+                user.is_verified ? "bg-green-500" : "bg-red-500"
               }`}
             >
               {user.is_verified ? "Yes" : "No"}
@@ -49,8 +47,11 @@ const Profile = () => {
           </p>
         </div>
 
-        <div className="mt-8 flex justify-center gap-4">
-          <button onClick ={handleLogout} className="bg-blue-400 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg shadow transition duration-200">
+        <div className="mt-8 flex justify-center">
+          <button
+            onClick={handleLogout}
+            className="bg-pink-500 hover:bg-pink-600 text-white px-5 py-2 rounded-lg shadow transition duration-200"
+          >
             Logout
           </button>
         </div>

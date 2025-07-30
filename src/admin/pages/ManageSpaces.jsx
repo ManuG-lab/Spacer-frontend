@@ -29,39 +29,41 @@ const ManageSpaces = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Manage Spaces</h2>
-      <table className="w-full bg-white shadow-md rounded overflow-hidden">
-        <thead className="bg-gray-200 text-left">
-          <tr>
-            <th className="p-3">ID</th>
-            <th className="p-3">Name</th>
-            <th className="p-3">Price/hr</th>
-            <th className="p-3">Price/day</th>
-            <th className="p-3">Capacity</th>
-            <th className="p-3">Location</th>
-          </tr>
-        </thead>
-        <tbody>
-          {spaces.length > 0 ? (
-            spaces.map((space) => (
-              <tr key={space.id} className="border-b hover:bg-gray-100">
-                <td className="p-3">{space.id}</td>
-                <td className="p-3">{space.title}</td>
-                <td className="p-3">{space.price_per_hour}/=</td>
-                <td className="p-3">{space.price_per_day}/=</td>
-                <td className="p-3">{space.capacity}</td>
-                <td className="p-3">{space.location}</td>
-              </tr>
-            ))
-          ) : (
+      <h2 className="text-2xl font-bold mb-6 text-midnight-navy">Manage Spaces</h2>
+      <div className="overflow-x-auto rounded shadow-md">
+        <table className="w-full bg-soft-white rounded border border-mist-gray">
+          <thead className="bg-steel-blue text-white">
             <tr>
-              <td colSpan="4" className="p-3 text-center text-gray-500">
-                No spaces found
-              </td>
+              <th className="p-4 text-left">ID</th>
+              <th className="p-4 text-left">Name</th>
+              <th className="p-4 text-left">Price/hr</th>
+              <th className="p-4 text-left">Price/day</th>
+              <th className="p-4 text-left">Capacity</th>
+              <th className="p-4 text-left">Location</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {spaces.length > 0 ? (
+              spaces.map((space) => (
+                <tr key={space.id} className="border-b border-mist-gray hover:bg-sky-blue/10">
+                  <td className="p-4">{space.id}</td>
+                  <td className="p-4">{space.title}</td>
+                  <td className="p-4">{space.price_per_hour}/=</td>
+                  <td className="p-4">{space.price_per_day}/=</td>
+                  <td className="p-4">{space.capacity}</td>
+                  <td className="p-4">{space.location}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="p-4 text-center text-gray-500">
+                  No spaces found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

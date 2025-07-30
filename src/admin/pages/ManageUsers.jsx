@@ -34,39 +34,41 @@ const ManageUsers = () => {
   }, [token]);
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Manage Users</h2>
+    <div className="p-6 bg-slate-50 min-h-screen">
+      <h2 className="text-2xl font-bold text-stone-800 mb-6">Manage Users</h2>
       {loading ? (
-        <p className="text-gray-500">Loading users...</p>
+        <p className="text-slate-500">Loading users...</p>
       ) : (
-        <table className="w-full bg-white shadow-md rounded overflow-hidden">
-          <thead className="bg-gray-200 text-left">
-            <tr>
-              <th className="p-3">ID</th>
-              <th className="p-3">Name</th>
-              <th className="p-3">Email</th>
-              <th className="p-3">Role</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users.length > 0 ? (
-              users.map((user) => (
-                <tr key={user.id} className="border-b hover:bg-gray-100">
-                  <td className="p-3">{user.id}</td>
-                  <td className="p-3">{user.name}</td>
-                  <td className="p-3">{user.email}</td>
-                  <td className="p-3">{user.role}</td>
-                </tr>
-              ))
-            ) : (
+        <div className="overflow-x-auto rounded shadow">
+          <table className="min-w-full bg-white border border-slate-200">
+            <thead className="bg-slate-700 text-white">
               <tr>
-                <td colSpan="4" className="p-3 text-center text-gray-500">
-                  No users found
-                </td>
+                <th className="p-3 text-left">ID</th>
+                <th className="p-3 text-left">Name</th>
+                <th className="p-3 text-left">Email</th>
+                <th className="p-3 text-left">Role</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {users.length > 0 ? (
+                users.map((user) => (
+                  <tr key={user.id} className="border-b hover:bg-sky-100">
+                    <td className="p-3 text-stone-700">{user.id}</td>
+                    <td className="p-3 text-stone-700">{user.name}</td>
+                    <td className="p-3 text-stone-700">{user.email}</td>
+                    <td className="p-3 text-stone-700">{user.role}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="4" className="p-3 text-center text-slate-500">
+                    No users found
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       )}
     </div>
   );

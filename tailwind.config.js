@@ -3,9 +3,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#2563eb', // blue-600
-        secondary: '#1e293b', // slate-800
-        accent: '#f59e0b', // amber-500
+        primary: '#4F46E5',     // Indigo
+        accent: '#06B6D4',      // Cyan
+        background: '#F8FAFC',  // Slate-50
+        surface: '#E5E7EB',     // Gray-200
+        textdark: '#1F2937',    // Gray-800
+        cta: '#3B82F6',         // Blue-500
+        error: '#EF4444',       // Red-500
+        success: '#10B981',     // Emerald-500
       },
     },
   },

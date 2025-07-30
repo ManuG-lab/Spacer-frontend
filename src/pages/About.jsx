@@ -29,95 +29,96 @@ export default function About() {
   ];
 
   return (
-    <div className="text-gray-800 bg-gray">
+    <div className="text-[#1F2937] bg-[#F8FAFC]">
       {/* Features Section */}
-      <section className="py-20 bg-gray-100 text-center px-4">
-        <h2 className="text-4xl font-bold mb-12">Our Features</h2>
+      <section className="py-20 text-center px-4">
+        <h2 className="text-4xl font-bold mb-12 text-[#4F46E5]">Our Features</h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map(([icon, title, desc]) => (
             <motion.div
               key={title}
-              className="bg-gray-100 p-6 rounded-xl shadow hover:shadow-xl transition"
+              className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
               <div className="text-4xl mb-4">{icon}</div>
-              <h3 className="text-xl font-semibold">{title}</h3>
-              <p className="mt-2 text-gray-600">{desc}</p>
+              <h3 className="text-xl font-semibold text-[#4F46E5]">{title}</h3>
+              <p className="mt-2 text-[#4B5563]">{desc}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
-     {/* Team Carousel Section */}
-<section className="py-20 bg-gray-100 text-center px-4">
-  <motion.h2
-    initial={{ opacity: 0, y: -20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-    className="text-4xl font-bold mb-12"
-  >
-    Meet the Team
-  </motion.h2>
-
-  <Swiper
-    modules={[Navigation]}
-    spaceBetween={24}
-    slidesPerView={3}
-    navigation
-    breakpoints={{
-      0: { slidesPerView: 1 },
-      640: { slidesPerView: 2 },
-      1024: { slidesPerView: 3 },
-    }}
-    className="max-w-6xl mx-auto"
-  >
-    {team.map(([name, role, img]) => (
-      <SwiperSlide key={name}>
-        <motion.div
-          whileHover={{ scale: 1.05 }}
+      {/* Team Carousel Section */}
+      <section className="py-20 text-center px-4">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          initial={{ opacity: 0, y: 50 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="bg-gray-200  p-6 rounded-xl shadow-md text-center h-full"
+          transition={{ duration: 0.6 }}
+          className="text-4xl font-bold mb-12 text-[#4F46E5]"
         >
-          <img
-            src={img}
-            alt={name}
-            className="rounded-full w-24 h-24 mx-auto mb-4 object-cover"
-          />
-          <h3 className="text-xl font-semibold">{name}</h3>
-          <p className="text-gray-500">{role}</p>
-        </motion.div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
-</section>
+          Meet the Team
+        </motion.h2>
 
+        <Swiper
+          modules={[Navigation]}
+          spaceBetween={24}
+          slidesPerView={3}
+          navigation
+          breakpoints={{
+            0: { slidesPerView: 1 },
+            640: { slidesPerView: 2 },
+            1024: { slidesPerView: 3 },
+          }}
+          className="max-w-6xl mx-auto"
+        >
+          {team.map(([name, role, img]) => (
+            <SwiperSlide key={name}>
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-[#E5E7EB] p-6 rounded-xl shadow text-center h-full"
+              >
+                <img
+                  src={img}
+                  alt={name}
+                  className="rounded-full w-24 h-24 mx-auto mb-4 object-cover"
+                />
+                <h3 className="text-xl font-semibold text-[#1F2937]">{name}</h3>
+                <p className="text-[#4B5563]">{role}</p>
+              </motion.div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </section>
 
-      {/* Testimonials Section with Animation */}
-      <section className="py-20 bg-gray-100  text-center px-4">
-        <h2 className="text-4xl font-bold mb-12">What Our Users Say</h2>
+      {/* Testimonials Section */}
+      <section className="py-20 text-center px-4">
+        <h2 className="text-4xl font-bold mb-12 text-[#4F46E5]">What Our Users Say</h2>
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map(([quote, author], index) => (
             <motion.div
               key={author}
-              className="bg-gray-100 p-6 rounded-xl shadow"
+              className="bg-white p-6 rounded-xl shadow hover:shadow-md"
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
             >
-              <p className="italic mb-4">"{quote}"</p>
-              <p className="font-semibold text-indigo-700">{author}</p>
+              <p className="italic mb-4 text-[#1F2937]">"{quote}"</p>
+              <p className="font-semibold text-[#06B6D4]">{author}</p>
             </motion.div>
           ))}
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }

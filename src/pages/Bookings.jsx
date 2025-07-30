@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
+
 const Bookings = () => {
   const [bookings, setBookings] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -78,58 +79,59 @@ const Bookings = () => {
     navigate(`/pay/${bookingId}`);
   };
 
-  if (loading) return <p className="p-6 text-gray-500">Loading your bookings...</p>;
-  if (error) return <p className="p-6 text-red-500">Error: {error}</p>;
+  if (loading) return <p className="p-6 text-[#64748B]">Loading your bookings...</p>;
+  if (error) return <p className="p-6 text-[#EF4444] font-medium">Error: {error}</p>;
 
   return (
-    <div className="p-6">
-      <h2 className="text-3xl font-bold mb-6 text-center">My Bookings</h2>
+    <div className="p-6 bg-[#F8FAFC] min-h-screen text-[#1F2937]">
+      <h2 className="text-3xl font-bold mb-6 text-center text-[#4F46E5]">
+        My Bookings
+      </h2>
 
       {bookings.length === 0 ? (
-        <p className="text-gray-600">You have no bookings yet.</p>
+        <p className="text-[#64748B]">You have no bookings yet.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {bookings.map((booking) => (
-            <div key={booking.id} className="bg-white p-5 shadow rounded-xl">
-              <h3 className="text-xl font-semibold mb-2">{booking.space.title}</h3>
-              <p className="text-sm text-gray-600 mb-1">
+            <div
+              key={booking.id}
+              className="bg-white p-5 shadow-sm hover:shadow-md rounded-xl border border-[#E5E7EB]"
+            >
+              <h3 className="text-xl font-semibold text-[#1F2937] mb-2">
+                {booking.space.title}
+              </h3>
+              <p className="text-sm text-[#475569] mb-1">
                 {new Date(booking.start_datetime).toLocaleString()} –{" "}
                 {new Date(booking.end_datetime).toLocaleString()}
               </p>
-              <p className="text-sm text-gray-700 mb-3">
+              <p className="text-sm text-[#334155] mb-3">
                 Total: <span className="font-semibold">KES {booking.total_price}</span>
               </p>
 
               <div className="flex flex-wrap gap-3 items-center mt-4">
                 {booking.status === "pending" && (
-                  <button
-                    className="bg-gray-300 text-gray-700 cursor-not-allowed px-4 py-2 rounded"
-                    disabled
-                  >
+                  <span className="bg-[#E5E7EB] text-[#475569] px-4 py-2 rounded cursor-not-allowed">
                     Pending
-                  </button>
+                  </span>
                 )}
 
                 {booking.status === "declined" && (
-                  <button
-                    className="bg-red-500 text-white cursor-not-allowed px-4 py-2 rounded"
-                    disabled
-                  >
+                  <span className="bg-[#EF4444] text-white px-4 py-2 rounded cursor-not-allowed">
                     Declined
-                  </button>
+                  </span>
                 )}
 
                 {booking.status === "confirmed" && (
                   <>
                     <button
                       onClick={() => handleInvoice(booking.id)}
-                      className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                      className="bg-[#3B82F6] hover:bg-[#2563EB] text-white px-4 py-2 rounded"
                     >
                       Get Invoice
                     </button>
                     <button
                       onClick={() => handlePayment(booking.id)}
-                      className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                      className="bg-[#10B981] hover:bg-[#059669] text-white px-4 py-2 rounded"
                     >
                       Make Payment
                     </button>

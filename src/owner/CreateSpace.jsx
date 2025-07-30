@@ -55,14 +55,14 @@ const CreateSpace = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md mt-6">
-      <h2 className="text-2xl font-bold mb-4">Add a New Space</h2>
+    <div className="max-w-2xl mx-auto p-6 bg-surface rounded-2xl shadow-md mt-6">
+      <h2 className="text-2xl font-bold mb-4 text-textdark">Add a New Space</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <input
           type="text"
           name="title"
           placeholder="Title"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.title}
           onChange={handleChange}
           required
@@ -70,7 +70,7 @@ const CreateSpace = () => {
         <textarea
           name="description"
           placeholder="Description"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.description}
           onChange={handleChange}
           required
@@ -79,7 +79,7 @@ const CreateSpace = () => {
           type="text"
           name="location"
           placeholder="Location"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.location}
           onChange={handleChange}
           required
@@ -88,7 +88,7 @@ const CreateSpace = () => {
           type="number"
           name="capacity"
           placeholder="Capacity"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.capacity}
           onChange={handleChange}
           required
@@ -97,7 +97,7 @@ const CreateSpace = () => {
           type="text"
           name="amenities"
           placeholder="Amenities (comma-separated)"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.amenities}
           onChange={handleChange}
         />
@@ -106,7 +106,7 @@ const CreateSpace = () => {
           step="0.01"
           name="price_per_hour"
           placeholder="Price Per Hour"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.price_per_hour}
           onChange={handleChange}
         />
@@ -115,7 +115,7 @@ const CreateSpace = () => {
           step="0.01"
           name="price_per_day"
           placeholder="Price Per Day"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.price_per_day}
           onChange={handleChange}
         />
@@ -123,7 +123,7 @@ const CreateSpace = () => {
           type="text"
           name="main_image_url"
           placeholder="Main Image URL"
-          className="w-full p-3 border rounded-xl"
+          className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary"
           value={formData.main_image_url}
           onChange={handleChange}
         />
@@ -131,12 +131,12 @@ const CreateSpace = () => {
           <img
             src={formData.main_image_url}
             alt="Preview"
-            className="w-full h-48 object-cover rounded-xl"
+            className="w-full h-48 object-cover rounded-xl border border-gray-300"
           />
         )}
         <button
           type="submit"
-          className="bg-blue-600 hover:bg-blue-700 text-white w-full p-3 rounded-xl"
+          className="bg-primary hover:bg-indigo-700 text-white w-full p-3 rounded-xl transition"
         >
           Submit
         </button>
