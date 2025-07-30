@@ -52,7 +52,7 @@ const EditSpace = () => {
       toast.success("Space updated successfully!");
       navigate("/owner/spaces");
     } else {
-      alert("Update failed");
+      toast.error("Update failed");
     }
   };
 

@@ -6,9 +6,9 @@ const AdminSidebar = () => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
-    <div className={`bg-white shadow-md ${isOpen ? "w-64" : "w-16"} transition-all duration-300`}>
+    <div className={`bg-gray-900 shadow-md ${isOpen ? "w-64" : "w-16"} transition-all duration-300`}>
       <div className="flex items-center justify-between p-4 border-b">
-        {isOpen && <span className="font-bold text-lg">Admin</span>}
+        {isOpen && <span className="font-bold text-lg text-indigo-600">Admin</span>}
         <FaBars className="cursor-pointer" onClick={() => setIsOpen(!isOpen)} />
       </div>
       <nav className="p-4 space-y-3">
@@ -24,7 +24,7 @@ const AdminSidebar = () => {
             end
             className={({ isActive }) =>
               `flex items-center p-2 rounded-md ${
-                isActive ? "bg-blue-500 text-white" : "text-gray-700 hover:bg-gray-100"
+                isActive ? "bg-blue-500 text-white" : "text-white hover:bg-blue-400"
               }`
             }
           >

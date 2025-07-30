@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -34,6 +34,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.clear(); 
     navigate("/login");
+    toast.success("Logged out successfully.");
   };
 
   const renderRoleLinks = () => {

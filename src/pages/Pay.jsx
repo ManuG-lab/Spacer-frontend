@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import { toast } from "react-toastify";
 const Pay = () => {
   const { bookingId } = useParams();
   const navigate = useNavigate();
@@ -27,11 +27,11 @@ const Pay = () => {
 
       const data = await res.json();
       if (!res.ok) throw new Error(data.message || "Payment failed");
-      alert("Payment successful!");
+      toast.success("Payment successful!");
       navigate("/bookings");
     } catch (err) {
       console.error(err);
-      alert(err.message);
+      toast.error(err.message);
     }
   };
 

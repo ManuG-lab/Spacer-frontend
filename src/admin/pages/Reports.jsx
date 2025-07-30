@@ -89,7 +89,7 @@ const Reports = () => {
                 )}
               </tbody>
             </table>
-            <div className="font-bold text-indigo-700">
+            <div className="font-bold text-red-500">
               Total Amount Transacted: KES {totalPayments}
             </div>
           </div>
