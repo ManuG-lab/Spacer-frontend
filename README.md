@@ -20,7 +20,7 @@ A modern React-based web application that connects users seeking **flexible work
 
 ## About the Project
 
-Group 6 presents **Spacer** as our Full Stack Capstone. This project uses **React (frontend)** and **Flask (backend)** to build a real-world application for managing space rentals. From booking shared offices to managing listings and payments, Spacer helps bring clients and owners together on a single platform.
+Group 9 presents **Spacer** as our Full Stack Capstone. This project uses **React (frontend)** and **Flask (backend)** to build a real-world application for managing space rentals. From booking shared offices to managing listings and payments, Spacer helps bring clients and owners together on a single platform.
 
 ---
 
