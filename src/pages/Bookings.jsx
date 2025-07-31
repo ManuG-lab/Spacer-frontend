@@ -60,7 +60,7 @@ const Bookings = () => {
       });
 
       if (response.status === 201) {
-        toast.success(data.message);
+        toast.success("Invoice generated successfully!");
       } else if (response.status === 409) {
         toast.warning(data.message);
       } else {
