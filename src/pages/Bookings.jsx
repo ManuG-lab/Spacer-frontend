@@ -50,7 +50,7 @@ const Bookings = () => {
     }
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/invoices", {
+      const response = await fetch("https://spacer-backend.onrender.com/api/invoices", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -58,8 +58,6 @@ const Bookings = () => {
         },
         body: JSON.stringify({ booking_id: bookingId }),
       });
-
-      const data = await response.json();
 
       if (response.status === 201) {
         toast.success(data.message);
@@ -92,6 +90,7 @@ const Bookings = () => {
           {bookings.map((booking) => (
             <div key={booking.id} className="bg-white p-5 shadow rounded-xl">
               <h3 className="text-xl font-semibold mb-2">{booking.space.title}</h3>
+              <img className="w-full h-32 object-cover mb-4" src={booking.space.main_image_url} alt={booking.space.title} />
               <p className="text-sm text-gray-600 mb-1">
                 {new Date(booking.start_datetime).toLocaleString()} –{" "}
                 {new Date(booking.end_datetime).toLocaleString()}
@@ -99,7 +98,6 @@ const Bookings = () => {
               <p className="text-sm text-gray-700 mb-3">
                 Total: <span className="font-semibold">KES {booking.total_price}</span>
               </p>
-
               <div className="flex flex-wrap gap-3 items-center mt-4">
                 {booking.status === "pending" && (
                   <button
